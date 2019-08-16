@@ -1,5 +1,5 @@
 FROM arm64v8/debian:buster
-COPY qemu-aarch64-static /usr/bin/
+COPY arm64/buster/qemu-aarch64-static /usr/bin/
 
 ENV OPENSSL_FLAGS='no-idea no-mdc2 no-rc5 no-zlib enable-tlsext no-ssl2 no-ssl3 no-ssl3-method enable-rfc3779 enable-cms'
 
