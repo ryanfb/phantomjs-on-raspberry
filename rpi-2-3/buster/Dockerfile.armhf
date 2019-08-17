@@ -9,7 +9,7 @@ RUN apt-get update     && \
     apt-get install -y    \
        build-essential git flex bison gperf python ruby git libfontconfig1-dev \
        dpkg-dev binutils gcc g++ libc-dev \
-       libjpeg8-dev libpng12-dev
+       libjpeg-dev libpng-dev
 
 WORKDIR /tmp
 
