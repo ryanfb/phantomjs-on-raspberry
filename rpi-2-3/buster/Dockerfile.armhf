@@ -1,5 +1,5 @@
 FROM arm32v7/debian:buster
-COPY qemu-arm-static /usr/bin/
+COPY rpi-2-3/buster/qemu-arm-static /usr/bin/
 
 ARG BUILDOP
 
