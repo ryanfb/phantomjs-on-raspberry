@@ -3,7 +3,8 @@ COPY arm64/buster/qemu-aarch64-static /usr/bin/
 
 ENV OPENSSL_FLAGS='no-idea no-mdc2 no-rc5 no-zlib enable-tlsext no-ssl2 no-ssl3 no-ssl3-method enable-rfc3779 enable-cms'
 
-RUN apt-get update     && \
+RUN echo "deb-src http://httpredir.debian.org/debian buster main" >> /etc/apt/sources.list && \
+    apt-get update     && \
     apt-get install -y    \
        build-essential git flex bison gperf python ruby git libfontconfig1-dev \
        dpkg-dev binutils gcc g++ libc-dev \
