@@ -22,13 +22,14 @@ RUN git clone git://github.com/ariya/phantomjs.git && \
     apt-get source openssl && \
     apt-get source icu
 
+RUN ls phantomjs
 RUN echo "Recompiling OpenSSL" && \
-    cd phantomjs/openssl-1.0.1e && \
+    cd phantomjs/openssl-1.1.1c && \
     ./Configure --prefix=/usr --openssldir=/etc/ssl --libdir=lib ${OPENSSL_FLAGS} linux-armv4 && \
     make depend && make && make install
 
 RUN echo "Building the static version of ICU library..." && \
-    cd phantomjs/icu-4.8.1.1/source && \
+    cd phantomjs/icu-63.1/source && \
     ./configure --prefix=/usr --enable-static --disable-shared && \
     make && make install
 

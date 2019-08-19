@@ -17,19 +17,16 @@ RUN git clone git://github.com/ariya/phantomjs.git && \
     git checkout 2.1.1     && \
     git submodule init     && \
     git submodule update   && \
+    apt-get source openssl && \
     apt-get source icu
 
-RUN cd phantomjs && \
-    curl -L -O http://http.debian.net/debian/pool/main/o/openssl/openssl_1.0.1t-1+deb8u7.dsc           && \
-    curl -L -O http://http.debian.net/debian/pool/main/o/openssl/openssl_1.0.1t.orig.tar.gz            && \
-    curl -L -O http://http.debian.net/debian/pool/main/o/openssl/openssl_1.0.1t-1+deb8u7.debian.tar.xz && \
-    dpkg-source -x openssl_1.0.1t-1+deb8u7.dsc openssl-1.0.1t && \
-    cd openssl-1.0.1t && \
+RUN ls phantomjs
+RUN cd phantomjs/openssl-1.1.1c && \
     ./Configure --prefix=/usr --openssldir=/etc/ssl --libdir=lib ${OPENSSL_FLAGS} linux-generic64 && \
     make depend && make -j 4 && make install_sw
 
 RUN echo "Building the static version of ICU library..." && \
-    cd phantomjs/icu-57.1/source && \
+    cd phantomjs/icu-63.1/source && \
     ./configure --prefix=/usr --enable-static --disable-shared && \
     make -j 4 && make install
 
