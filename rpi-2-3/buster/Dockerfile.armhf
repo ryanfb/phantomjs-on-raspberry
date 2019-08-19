@@ -1,16 +1,16 @@
-FROM armv32v7/debian:buster
-COPY qemu-arm-static /usr/bin/
+FROM arm32v7/debian:buster
+COPY rpi-2-3/buster/qemu-arm-static /usr/bin/
 
 ARG BUILDOP
 
 ENV OPENSSL_FLAGS='no-idea no-mdc2 no-rc5 no-zlib enable-tlsext no-ssl2 no-ssl3 no-ssl3-method enable-rfc3779 enable-cms'
 
-RUN echo "deb-src http://httpredir.debian.org/debian wheezy main" >> /etc/apt/sources.list && \
+RUN echo "deb-src http://httpredir.debian.org/debian buster main" >> /etc/apt/sources.list && \
     apt-get update     && \
     apt-get install -y    \
        build-essential git flex bison gperf python ruby git libfontconfig1-dev \
        dpkg-dev binutils gcc g++ libc-dev \
-       libjpeg8-dev libpng12-dev
+       libjpeg-dev libpng-dev
 
 WORKDIR /tmp
 
