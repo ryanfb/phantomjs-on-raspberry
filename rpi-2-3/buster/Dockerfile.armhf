@@ -10,7 +10,8 @@ RUN echo "deb-src http://httpredir.debian.org/debian buster main" >> /etc/apt/so
     apt-get install -y    \
        build-essential git flex bison gperf python ruby git libfontconfig1-dev \
        dpkg-dev binutils gcc g++ libc-dev \
-       libjpeg-dev libpng-dev
+       libjpeg-dev libpng-dev \
+       curl
 
 WORKDIR /tmp
 
