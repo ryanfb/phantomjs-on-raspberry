@@ -1,8 +1,6 @@
 FROM arm32v7/debian:buster
 COPY rpi-2-3/buster/qemu-arm-static /usr/bin/
 
-ARG BUILDOP
-
 ENV OPENSSL_FLAGS='no-idea no-mdc2 no-rc5 no-zlib enable-tlsext no-ssl2 no-ssl3 no-ssl3-method enable-rfc3779 enable-cms'
 
 RUN echo "deb-src http://httpredir.debian.org/debian buster main" >> /etc/apt/sources.list && \
@@ -40,11 +38,11 @@ RUN echo "Building the static version of ICU library..." && \
     dpkg-source -x icu_57.1-6+deb9u3.dsc icu-57.1 && \
     cd icu-57.1/source && \
     ./configure --prefix=/usr --enable-static --disable-shared && \
-    make && make install
+    make -j 4 && make install
 
 
 RUN echo "Compiling PhantomJS..." && \
     cd phantomjs && \
-    python build.py ${BUILDOP} --confirm --release --qt-config="-no-pkg-config" --git-clean-qtbase --git-clean-qtwebkit
+    python build.py --confirm --release --qt-config="-no-pkg-config" --git-clean-qtbase --git-clean-qtwebkit
 
 CMD ["/bin/bash"]
